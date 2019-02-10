@@ -21,7 +21,7 @@ namespace Benchmark.Paging.PhysicalLevel
             Add(DefaultConfig.Instance.GetLoggers().ToArray());
             Add(TargetMethodColumn.Method);
             Add(DefaultColumnProviders.Params);
-            var ass = AppDomain.CurrentDomain.GetAssemblies().First(k => k.FullName.Contains("IO.Paging.PhysicalLevel"));
+            var ass = AppDomain.CurrentDomain.GetAssemblies().First(k => k.FullName.Contains("HybridLocks"));
             var version = ass.GetCustomAttribute<AssemblyFileVersionAttribute>().Version;
             Add(new DataColumn("Version",version));
             Add(new DataColumn("Group", group));
