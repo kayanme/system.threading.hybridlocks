@@ -1,0 +1,52 @@
+image: microsoft/dotnet:2.1-sdk
+stages:
+ - unit_test   
+ - benchmark
+ - publish
+ - deploy
+
+
+test_debug: 
+  stage: unit_test  
+  script: 
+     - dotnet test Test.Threading.HybridLocks -c Debug 
+     
+test_release: 
+  stage: unit_test  
+  script: 
+     - dotnet tool install --global coverlet.console
+     - dotnet tool install coveralls.net --tool-path ./tools
+     - dotnet test Test.Threading.HybridLocks -c Release /p:Include="[*System.Threading*]*" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=coverage.xml               
+     - tools/csmacnz.Coveralls --opencover -i Test.Threading.HybridLocks/coverage.xml --repoToken 6ZRcivFLTNUU4bmNIqsZgaXOc4IMWktjd --commitId $CI_COMMIT_SHA --commitBranch $CI_COMMIT_REF_NAME --commitMessage $CI_COMMIT_TITLE --jobId $CI_JOB_ID     
+
+
+benchmark:
+  stage: benchmark  
+  artifacts:
+     paths:
+     - Benchmarks
+  script:
+    - dotnet run --project Benchmark.HybridLocks -c Release
+
+pages:
+   stage: publish
+   dependencies:
+       - benchmark       
+   artifacts:
+     paths: 
+       - public
+   only:
+     - master
+   script: 
+    - cp -r Benchmarks public    
+    
+
+packages:
+  stage: deploy
+  only:
+     - master
+  script: 
+   - dotnet build System.Threading.HybridLocks-c Release 
+   - dotnet nuget push System.Threading.HybridLocks/bin/Release/*.nupkg -k oy2cqotpghuxh56wruoabzcnpnh7z3auxcbbc5y26tngtu -s https://api.nuget.org/v3/index.json
+
+   

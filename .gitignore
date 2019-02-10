@@ -1,0 +1,12 @@
+﻿################################################################################
+# Данный GITIGNORE-файл был автоматически создан Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/System.Threading.HybridLocks/v15
+/Benchmark.HybridLocks/bin
+/Benchmark.HybridLocks/obj
+/System.Threading.HybridLocks/.vs/System.Threading.HybridLocks/v15/Server/sqlite3
+/System.Threading.HybridLocks/bin
+/System.Threading.HybridLocks/obj
+/Test.Threading.HybridLocks/bin
+/Test.Threading.HybridLocks/obj
