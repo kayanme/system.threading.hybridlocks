@@ -46,7 +46,7 @@ packages:
   only:
      - master
   script: 
-   - dotnet build System.Threading.HybridLocks-c Release 
+   - dotnet build System.Threading.HybridLocks -c Release 
    - dotnet nuget push System.Threading.HybridLocks/bin/Release/*.nupkg -k oy2cqotpghuxh56wruoabzcnpnh7z3auxcbbc5y26tngtu -s https://api.nuget.org/v3/index.json
 
    
