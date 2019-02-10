@@ -17,7 +17,7 @@ test_release:
      - dotnet tool install --global coverlet.console
      - dotnet tool install coveralls.net --tool-path ./tools
      - dotnet test Test.Threading.HybridLocks -c Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=coverage.xml               
-     - tools/csmacnz.Coveralls --opencover -i Test.Threading.HybridLocks/coverage.xml --repoToken 6ZRcivFLTNUU4bmNIqsZgaXOc4IMWktjd --commitId $CI_COMMIT_SHA --commitBranch $CI_COMMIT_REF_NAME --commitMessage $CI_COMMIT_TITLE --jobId $CI_JOB_ID     
+   #  - tools/csmacnz.Coveralls --opencover -i Test.Threading.HybridLocks/coverage.xml --repoToken 6ZRcivFLTNUU4bmNIqsZgaXOc4IMWktjd --commitId $CI_COMMIT_SHA --commitBranch $CI_COMMIT_REF_NAME --commitMessage $CI_COMMIT_TITLE --jobId $CI_JOB_ID     
 
 
 benchmark:
